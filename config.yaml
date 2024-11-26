@@ -1,0 +1,6 @@
+path: C:\Users\Khushi.Jirge\sem-seg\data
+train: images/train 
+val: images/val  
+
+nc: 1
+names: ['weld']
