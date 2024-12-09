@@ -22,12 +22,11 @@ def show_masks_on_image(raw_image, masks, scores):
     nb_predictions = scores.shape[-1]
     fig, axes = plt.subplots(1, nb_predictions, figsize=(15, 15))
 
-    for i, (mask, score) in enumerate(zip(masks, scores)):
-      mask = mask.cpu().detach()
-      axes[i].imshow(np.array(raw_image))
-      show_mask(mask, axes[i])
-      axes[i].title.set_text(f"Mask {i+1}, Score: {score.item():.3f}")
-      axes[i].axis("off")
+    masks[1] = masks[1].cpu().detach()
+    axes[1].imshow(np.array(raw_image))
+    show_mask(masks[1], axes[1])
+    axes[1].title.set_text(f"Mask {1}, Score: {scores[1].item():.3f}")
+    axes[1].axis("off")
     plt.show()
 
 # Step 1: Set device and load the model
@@ -58,4 +57,5 @@ scores = outputs.iou_scores
 
 scores.shape
 
-show_masks_on_image(raw_image, masks[0][2], scores[:, 0, :])
+show_masks_on_image(raw_image, masks[0][0], scores[:, 0, :])
+print(masks[0][0])
